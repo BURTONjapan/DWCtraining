@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% if flash[:notice] %>
+     <p id="notice">
+       <%= flash[:notice] %>
+     </p>
+    <% end %>
+  </head>
+  <body>
+    <h4 class="title_display"><strong>Title:</strong><%= @book.title %></h4>
+    <h4 class="body_display"><strong>Body:</strong><%= @book.body %></h4>
+　　<p><%= link_to "Edit", "/books/#{@book.id}/edit" %>|<%= link_to "Back", "/books" %></p>
+  </body>
+</html>

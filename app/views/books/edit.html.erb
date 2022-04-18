@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% if flash[:notice] %>
+     <p id="notice">
+       <%= flash[:notice] %>
+     </p>
+    <% end %>
+  </head>
+  <body>
+    <h2>Editing Book</h2>
+
+    <% if @book.errors.any? %>
+      <div class="error_window">
+        <%= @book.errors.count %>errors prohibited this book from being saved:
+        <ul>
+          <% @book.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <%= form_with model: @book,  url:book_path(@book.id), method: :patch do |f| %>
+      <div class="titlebox">
+        <h4>Title</h4>
+        <%= f.text_field :title %>
+      </div>
+      <div class="bodybox">
+        <h4>Body</h4>
+        <%= f.text_area :body %>
+      </div>
+      <div class="updatebox"><%= f.submit 'Update Book' %></div>
+    <% end %>
+    <p><%= link_to "Show", "/books/#{@book.id}" %>|<%= link_to "Back", "/books" %></p>
+  </body>
+</html>
